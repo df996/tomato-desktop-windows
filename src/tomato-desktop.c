@@ -6,7 +6,6 @@
 #include "client/td_screen.h"
 
 int main() {
-    td_screen_rect *rect = td_screen_get_rect();
-    free(rect);
+    td_screen_capture();
     return 0;
 }

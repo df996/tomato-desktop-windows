@@ -5,6 +5,10 @@
 #ifndef TOMATO_DESKTOP_WINDOWS_TD_SCREEN_H
 #define TOMATO_DESKTOP_WINDOWS_TD_SCREEN_H
 
+#ifndef BITMAP_HEADER_FLAG
+#define BITMAP_HEADER_FLAG 0x4D42
+#endif // BITMAP_HEADER_FLAG
+
 #include <Windows.h>
 #include <stdio.h>
 
