@@ -3,8 +3,10 @@
 //
 
 #include <stdio.h>
+#include "client/td_screen.h"
 
 int main() {
-    printf("Hello World\n");
+    td_screen_rect *rect = td_screen_get_rect();
+    free(rect);
     return 0;
 }
