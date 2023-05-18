@@ -6,6 +6,9 @@
 #include "client/td_screen.h"
 
 int main() {
+    // 设置当前进程DPI
+    SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_SYSTEM_AWARE);
+
     td_screen_capture();
     return 0;
 }

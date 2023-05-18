@@ -9,11 +9,19 @@
  * @return td_screen_rect
  */
 td_screen_rect *td_screen_get_rect() {
+    // 获取屏幕句柄
+    HDC screen_hdc = GetDC(NULL);
+
+    // 设置屏幕矩形结构
     td_screen_rect *rect = (td_screen_rect *) malloc(sizeof(td_screen_rect));
     rect->top = 0;
     rect->left = 0;
-    rect->width = 1024;
-    rect->height= 768;
+    rect->width = GetDeviceCaps(screen_hdc, HORZRES);
+    rect->height= GetDeviceCaps(screen_hdc, VERTRES);
+
+    // 释放
+    ReleaseDC(NULL, screen_hdc);
+    return rect;
 }
 
 void td_screen_capture() {
@@ -30,8 +38,8 @@ void td_screen_capture() {
     // 复制屏幕DC像素到内存DC中
     BitBlt(mem_hdc, 0, 0, screen_rect->width, screen_rect->height, screen_hdc,0, 0, SRCCOPY);
 
-    BITMAP bitmap;
     // 获取位图信息
+    BITMAP bitmap;
     GetObject(screen_h_bmp, sizeof(BITMAP), &bitmap);
 
     // 位图文件头
