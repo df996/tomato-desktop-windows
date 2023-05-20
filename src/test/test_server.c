@@ -89,6 +89,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wparam, LPARAM lparam) 
 }
 
 void OnPaint(HWND hwnd) {
+    printf("OnPaint");
     int x, y;
     PAINTSTRUCT ps;
 
