@@ -1,8 +1,0 @@
-//
-// Created by Administrator on 2023/5/15.
-//
-
-#ifndef TOMATO_DESKTOP_WINDOWS_TD_CONNECT_H
-#define TOMATO_DESKTOP_WINDOWS_TD_CONNECT_H
-
-#endif //TOMATO_DESKTOP_WINDOWS_TD_CONNECT_H
