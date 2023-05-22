@@ -24,5 +24,18 @@ typedef struct td_screen_rect {
  * @return td_screen_rect
  */
 td_screen_rect * td_screen_get_rect();
-void td_screen_capture();
+
+/**
+ * 获取屏幕位图句柄
+ * @return 当前屏幕位图句柄
+ */
+HBITMAP td_screen_get_hbitmap();
+
+/**
+ * 截屏
+ * @param bitmap 接收截屏的位图指针
+ */
+void td_screen_capture(BITMAP *bitmap);
+
+void td_screen_capture_to_file();
 #endif //TOMATO_DESKTOP_WINDOWS_TD_SCREEN_H

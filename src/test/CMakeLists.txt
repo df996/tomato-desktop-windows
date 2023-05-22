@@ -1,5 +1,5 @@
 # cmake_minimum_required(VERSION <specify CMake version here>)
-project(tomato_desktop_windows_test C)
+project(test C)
 
 set(CMAKE_C_STANDARD 11)
 
@@ -11,6 +11,13 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS /ENTRY:WinMainCRTStartup")
 
 add_executable(
-        tomato_desktop_windows_test
-        test_server.c
+        test_server
+        test_server.c)
+
+
+add_executable(
+        test_desktop
+        test_desktop.c
+        ../client/td_screen.c
+        ../client/td_screen.h
 )
