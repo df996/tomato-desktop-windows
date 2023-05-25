@@ -15,7 +15,7 @@ typedef struct {
     uint32_t magic;
     uint16_t version;
     uint16_t command;
-    uint32_t data_length;
+    uint32_t length;
     char data;
 } td_rdp;
 #endif //TOMATO_DESKTOP_WINDOWS_TD_RDP_H

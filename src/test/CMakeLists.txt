@@ -12,12 +12,21 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS /ENTRY:
 
 add_executable(
         test_server
-        test_server.c)
-
+        test_server.c
+)
 
 add_executable(
         test_desktop
         test_desktop.c
         ../client/td_screen.c
         ../client/td_screen.h
+)
+
+add_executable(
+        test_client
+        test_client.c
+        ../client/td_screen.c
+        ../client/td_screen.h
+        ../core/td_rdp.c
+        ../core/td_rdp.h
 )

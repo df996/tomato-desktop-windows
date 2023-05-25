@@ -18,10 +18,8 @@
 
 #pragma comment(linker,"/subsystem:windows")
 
-static HBITMAP hbitmap;
-static int cx_client, cy_client, cx_source, cy_source;
+static int cx_client, cy_client;
 static HANDLE server_thread;
-BITMAP bitmap;
 
 void OnPaint(HWND hwnd);
 DWORD WINAPI onStartServer(LPVOID lpParam);
@@ -75,14 +73,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wparam, LPARAM lparam) {
     switch (uMsg) {
         case WM_CREATE:
-            onStartServer(NULL);
-            hbitmap = (HBITMAP) LoadImage(
-                    NULL,
-                    L"C:\\Users\\cheng\\workspaces\\tomato-desktop-windows\\cmake-build-debug-visual-studio\\capture.bmp",
-                    IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-            GetObject(hbitmap, sizeof(BITMAP), &bitmap);
-            cx_source = bitmap.bmWidth;
-            cy_source = bitmap.bmHeight;
+            onStartServer(hwnd);
             return 0;
         case WM_DESTROY:
             if (server_thread != NULL) {
@@ -103,21 +94,8 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wparam, LPARAM lparam) 
 }
 
 void OnPaint(HWND hwnd) {
-    printf("OnPaint\n");
-    int x, y;
     PAINTSTRUCT ps;
-
     HDC hdc = BeginPaint(hwnd, &ps);
-    HDC mem_dc = CreateCompatibleDC(hdc);
-    SelectObject(mem_dc, hbitmap);
-
-    for (y = 0; y < cy_client; y += cy_source) {
-        for (x = 0; x < cx_client; x += cx_source) {
-            BitBlt(hdc, x, y, cx_source, cy_source, mem_dc, 0, 0, SRCCOPY);
-        }
-    }
-
-    DeleteDC(mem_dc);
     DeleteDC(hdc);
     EndPaint(hwnd, &ps);
 }
